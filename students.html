@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Студенти Гоґвортсу</title>
+    <!-- Подключаем наш готовый CSS (шрифты и переменные уже внутри) -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Блок экрана студентов (Блок: students-screen) -->
+    <section class="students-screen">
+      <div class="students-screen__container">
+        <!-- Золотой заголовок из Фигмы -->
+        <h1 class="students-screen__title">Студенти Гоґвортсу</h1>
+
+        <!-- Пустая сетка-контейнер, куда JS будет вставлять карточки -->
+        <div class="students-screen__grid">
+          <!-- Карточка персонажа (Блок/Элемент: student-card) -->
+          <div class="student-card">
+            <!-- 1. Картинка-фон -->
+            <img
+              class="student-card__img"
+              src="https://placehold.co"
+              alt="Harry Potter"
+            />
+
+            <!-- 2. Основной контент карточки (Имя, инфо, кнопка) -->
+            <div class="student-card__content">
+              <h3 class="student-card__name">Harry Potter</h3>
+              <div class="student-card__info">
+                <p class="student-card__text">
+                  Alternative name: <span>Harry</span>
+                </p>
+                <p class="student-card__text">House: <span>Gryffindor</span></p>
+                <p class="student-card__text">
+                  Date of birth: <span>31-07-1980</span>
+                </p>
+              </div>
+              <a href="#" class="student-card__more">
+                Більше інформації
+                <span class="student-card__arrow">→</span>
+              </a>
+            </div>
+
+            <!-- 3. ХОВЕР НАХОДИТСЯ ТУТ! В самом конце, отдельно от content! -->
+            <div class="student-card__hover">
+              <p class="student-card__hover-line">
+                Name: <span>Harry Potter</span>
+              </p>
+              <p class="student-card__hover-line">
+                Alternate names: <span>The Boy Who Lived, The Chosen One</span>
+              </p>
+              <p class="student-card__hover-line">
+                Species: <span>Human</span>
+              </p>
+              <p class="student-card__hover-line">Gend: <span>Male</span></p>
+              <p class="student-card__hover-line">
+                House: <span>Gryffindor</span>
+              </p>
+              <p class="student-card__hover-line">
+                Date of birth: <span>31-07-1980</span>
+              </p>
+              <p class="student-card__hover-line">
+                Year of birth: <span>1980</span>
+              </p>
+              <p class="student-card__hover-line">Wizard: <span>True</span></p>
+              <p class="student-card__hover-line">
+                Ancestry: <span>Half-blood</span>
+              </p>
+              <p class="student-card__hover-line">
+                Eye colour: <span>Green</span>
+              </p>
+              <p class="student-card__hover-line">
+                Hair colour: <span>Black</span>
+              </p>
+              <p class="student-card__hover-line">
+                Wand:
+                <span>Wood : holly, core : phoenix feather, length : 11</span>
+              </p>
+              <p class="student-card__hover-line">
+                Patronus: <span>Stag</span>
+              </p>
+              <p class="student-card__hover-line">
+                Hogwarts student: <span>True</span>
+              </p>
+              <p class="student-card__hover-line">
+                Hogwarts staff: <span>False</span>
+              </p>
+              <p class="student-card__hover-line">
+                Actor: <span>Daniel Radcliff</span>
+              </p>
+              <p class="student-card__hover-line">Alive: <span>True</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Подключим отдельный скрипт для этой страницы чуть позже -->
+  </body>
+</html>

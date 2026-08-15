@@ -1,0 +1,25 @@
+{
+  "name": "harry-potter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langiman2-beep/harry-potter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/langiman2-beep/harry-potter/issues"
+  },
+  "homepage": "https://github.com/langiman2-beep/harry-potter#readme",
+  "devDependencies": {
+    "sass": "^1.102.0",
+    "typescript": "^7.0.2"
+  }
+}
