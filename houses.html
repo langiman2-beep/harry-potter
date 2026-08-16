@@ -3,15 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Персонажі факультетів</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
   <body>
-    <!-- Секция для фильтрации персонажей по факультетам -->
-    <section class="houses-section">
-      <div class="houses-grid">
-        <!-- Сюда робот будет штамповать отфильтрованных по домам персонажей -->
+    <!-- Блок екрану факультетів (Блок: houses-screen) -->
+    <section class="houses-screen">
+      <div class="houses-screen__container">
+        <!-- Золотий заголовок -->
+        <h1 class="houses-screen__title">Персонажі в певному будинку</h1>
+
+        <!-- Панель фільтрації / Таби (Блок: houses-filter) -->
+        <!-- Панель фільтрації / Таби (Блок: houses-filter) -->
+        <div class="houses-filter">
+          <!-- Активна кнопка Гриффіндор -->
+          <button class="houses-filter__btn is-active" data-house="gryffindor">
+            <img
+              class="houses-filter__icon"
+              src="images/gryffindor.svg"
+              alt="Gryffindor"
+            />
+            Gryffindor
+          </button>
+
+          <!-- Неактивні кнопки -->
+          <button class="houses-filter__btn" data-house="slytherin">
+            <img
+              class="houses-filter__icon"
+              src="images/slytherin.svg"
+              alt="Slytherin"
+            />
+            Slytherin
+          </button>
+
+          <button class="houses-filter__btn" data-house="ravenclaw">
+            <img
+              class="houses-filter__icon"
+              src="images/ravenclaw.svg"
+              alt="Ravenclaw"
+            />
+            Ravenclaw
+          </button>
+
+          <button class="houses-filter__btn" data-house="hufflepuff">
+            <img
+              class="houses-filter__icon"
+              src="images/hufflepuff.svg"
+              alt="Hufflepuff"
+            />
+            Hufflepuff
+          </button>
+        </div>
+
+        <!-- Сетка-контейнер для карток (будемо перевикористовувати стилі карток!) -->
+        <div class="houses-screen__grid" id="houses-container">
+          <!-- Сюда JS будет кидать магов выбранного факультета -->
+        </div>
       </div>
     </section>
+    <script type="module" src="js/houses.js"></script>
   </body>
 </html>

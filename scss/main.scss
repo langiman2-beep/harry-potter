@@ -1,0 +1,11 @@
+@use 'utils/variables' as v;
+@use 'base/fonts';
+@use 'base/reset';
+@use 'components/main-screen';
+@use 'components/categories';
+@use 'components/students-screen';
+@use 'components/staff-screen';
+@use 'components/student-card';
+@use 'components/staff-card';
+@use 'components/houses';
+@use 'components/filter';

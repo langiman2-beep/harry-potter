@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Студенти Гоґвортсу</title>
     <!-- Подключаем наш готовый CSS (шрифты и переменные уже внутри) -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
   <body>
     <!-- Блок экрана студентов (Блок: students-screen) -->
@@ -15,7 +16,7 @@
         <h1 class="students-screen__title">Студенти Гоґвортсу</h1>
 
         <!-- Пустая сетка-контейнер, куда JS будет вставлять карточки -->
-        <div class="students-screen__grid">
+        <div class="students-screen__grid" id="students-container">
           <!-- Карточка персонажа (Блок/Элемент: student-card) -->
           <div class="student-card">
             <!-- 1. Картинка-фон -->
@@ -96,7 +97,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Подключим отдельный скрипт для этой страницы чуть позже -->
+    <script type="module" src="js/students.js"></script>
   </body>
 </html>

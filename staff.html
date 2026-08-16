@@ -3,15 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Співробітники Гоґвортсу</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
   </head>
   <body>
-    <!-- Секция только для сотрудников и преподавателей -->
-    <section class="staff-section">
-      <div class="staff-grid">
-        <!-- Сюда робот со склада API будет закидывать профессоров -->
+    <!-- Блок екрану співробітників (Блок: staff-screen) -->
+    <section class="staff-screen">
+      <div class="staff-screen__container">
+        <!-- Золотий заголовок -->
+        <h1 class="staff-screen__title">Співробітники Гоґвортсу</h1>
+
+        <!-- Сетка-контейнер для вчительських карток -->
+        <div class="staff-screen__grid" id="staff-container">
+          <!-- Тестова картка викладача (Блок: staff-card) -->
+          <div class="staff-card">
+            <!-- Зображення професора (заглушка) -->
+            <img
+              class="staff-card__img"
+              src="https://placehold.co"
+              alt="Severus Snape"
+            />
+
+            <!-- Контент картки -->
+            <div class="staff-card__content">
+              <h3 class="staff-card__name">Severus Snape</h3>
+
+              <div class="staff-card__info">
+                <p class="staff-card__text">
+                  Alternative name: <span>Half-Blood Prince</span>
+                </p>
+                <p class="staff-card__text">House: <span>Slytherin</span></p>
+                <p class="staff-card__text">
+                  Date of birth: <span>09-01-1960</span>
+                </p>
+              </div>
+
+              <a href="#" class="staff-card__more">
+                Більше інформації
+                <span class="staff-card__arrow">→</span>
+              </a>
+            </div>
+
+            <!-- Плашка ховера для вчителя -->
+            <div class="staff-card__hover">
+              <p class="staff-card__hover-line">
+                Name: <span>Severus Snape</span>
+              </p>
+              <p class="staff-card__hover-line">Species: <span>Human</span></p>
+              <p class="staff-card__hover-line">Gend: <span>Male</span></p>
+              <p class="staff-card__hover-line">
+                House: <span>Slytherin</span>
+              </p>
+              <p class="staff-card__hover-line">
+                Ancestry: <span>Half-blood</span>
+              </p>
+              <p class="staff-card__hover-line">
+                Actor: <span>Alan Rickman</span>
+              </p>
+              <p class="staff-card__hover-line">Alive: <span>False</span></p>
+            </div>
+          </div>
+          <!-- /staff-card -->
+        </div>
       </div>
     </section>
+    <script type="module" src="js/staff.js"></script>
   </body>
 </html>

@@ -1,0 +1,61 @@
+@use '../utils/variables' as v;
+
+.main-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('../images/main-gradient.png'), url('../images/main-bg.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 15vh;
+  gap: 40px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 250px;
+    background: linear-gradient(to bottom, transparent 0%, v.$color-bg 100%);
+    pointer-events: none;
+  }
+
+  &__title {
+    width: 926px;
+    font-family: v.$font-main;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+    color: v.$color-gold;
+  }
+
+  &__btn {
+    width: 300px;
+    height: 60px;
+    background-color: v.$color-yellow;
+    color: v.$color-dark;
+    border-radius: 100px;
+    border: none;
+    font-family: v.$font-main;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 130%;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+
+    &:hover {
+      background-color: #dfa006;
+      transform: scale(1.05);
+    }
+  }
+}
