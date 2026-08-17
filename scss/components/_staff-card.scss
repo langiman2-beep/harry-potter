@@ -12,12 +12,15 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px 20px;
+  outline: none;
 
   animation: cardFlipIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
   transition: transform 0.3s ease;
 
-  &:hover {
-    transform: translateY(-5px);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 
   &__img {
@@ -146,7 +149,16 @@
       opacity 0.3s ease;
   }
 
-  &:hover &__hover {
+  @media (hover: hover) {
+    &:hover &__hover {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &:active &__hover,
+  &:focus &__hover,
+  &:focus-within &__hover {
     transform: translateY(0);
     opacity: 1;
   }
