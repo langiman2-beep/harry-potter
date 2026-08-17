@@ -15,6 +15,11 @@
   padding-top: 15vh;
   gap: 40px;
 
+  @media (max-width: 768px) {
+    padding-top: 8vh;
+    gap: 20px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -35,6 +40,18 @@
     text-align: center;
     text-transform: uppercase;
     color: v.$color-gold;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      max-width: 700px;
+      font-size: 52px;
+      padding: 0 20px; // Добавляем воздуху по бокам
+    }
+
+    @media (max-width: 480px) {
+      font-size: 32px;
+      line-height: 1.3;
+    }
   }
 
   &__btn {
@@ -56,6 +73,12 @@
     &:hover {
       background-color: #dfa006;
       transform: scale(1.05);
+    }
+    @media (max-width: 480px) {
+      width: 100%;
+      max-width: 280px;
+      height: 50px;
+      font-size: 16px;
     }
   }
 }

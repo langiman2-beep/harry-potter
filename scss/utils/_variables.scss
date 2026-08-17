@@ -15,3 +15,15 @@ $color-bg: #1a1a1a;
 $color-white: #ffffff;
 $font-main: 'Bluu Next Cyrillic', serif;
 $font-accent: 'Inter', sans-serif;
+
+// Эффектное 3D-переворачивание карточки вокруг вертикальной оси
+@keyframes cardFlipIn {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-90deg); // Карточка повернута боком и не видна
+  }
+  to {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg); // Плавно разворачивается лицом к нам
+  }
+}

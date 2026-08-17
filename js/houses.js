@@ -47,7 +47,9 @@ function filterAndRender(house) {
     const filtered = allCharacters.filter(char => char.house.toLowerCase() === house.toLowerCase());
     // Рисуем карточки (переиспользуем нашу красивую БЭМ-разметку)
     filtered.forEach(char => {
-        const characterImage = char.image ? char.image : 'https://placehold.co';
+        const characterImage = char.image
+            ? char.image
+            : 'https://placehold.co/400x600/000000/000000/png';
         const altNames = char.alternate_names.length > 0
             ? char.alternate_names.join(', ')
             : 'None';
