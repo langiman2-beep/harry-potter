@@ -1,28 +1,20 @@
 import { HPCharacter } from './types.js';
-
-const API_URL = 'https://hp-api.onrender.com/api/characters';
+import { fetchData } from './api.js';
 
 async function loadStaff(): Promise<void> {
-  try {
-    const response = await fetch(API_URL);
-    if (!response.ok) {
-      throw new Error(`Помилка сервера: ${response.status}`);
-    }
-    const allCharacters: HPCharacter[] = await response.json();
+  const container = document.getElementById('staff-container');
+  if (!container) return;
 
-    // Фильтруем базу, оставляя строго преподавателей
-    const staff = allCharacters.filter(char => char.hogwartsStaff === true);
-    renderStaff(staff);
-  } catch (error) {
-    console.error('Не вдалося завантажити викладачів:', error);
-  }
+  // Вызываем общую функцию и передаем ей твоё правило фильтрации преподавателей
+  const staff = await fetchData(container, char => char.hogwartsStaff === true);
+
+  if (staff.length === 0) return;
+
+  // Твой родной рендеринг карточек в полной сохранности
+  renderStaff(staff, container);
 }
 
-function renderStaff(characters: HPCharacter[]): void {
-  const container = document.getElementById('staff-container'); // Твой ID для сетки препов
-  if (!container) return;
-  container.innerHTML = '';
-
+function renderStaff(characters: HPCharacter[], container: HTMLElement): void {
   characters.forEach(char => {
     const characterImage = char.image
       ? char.image
@@ -39,7 +31,6 @@ function renderStaff(characters: HPCharacter[]): void {
         <div class="staff-card__content">
           <h3 class="staff-card__name">${char.name}</h3>
           <div class="staff-card__info">
-            <!-- Строгая строка как на макете Хогвартса -->
             <p class="staff-card__text">The Boy Who Lived</p>
             <p class="staff-card__text">${char.house || 'Unknown'}</p>
             <p class="staff-card__text">${char.dateOfBirth || 'Unknown'}</p>

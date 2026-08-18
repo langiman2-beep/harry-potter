@@ -1,6 +1,7 @@
 @use 'utils/variables' as v;
 @use 'base/fonts';
 @use 'base/reset';
+@use 'components/_back-btn';
 @use 'components/main-screen';
 @use 'components/categories';
 @use 'components/students-screen';
