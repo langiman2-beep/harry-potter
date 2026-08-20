@@ -1,36 +1,17 @@
-const API_URL = 'https://hp-api.onrender.com/api/characters';
-/**
- * Универсальная функция загрузки персонажей с лоудером и обработкой ошибок
- */
-export async function fetchData(container, filterFn) {
-    if (!container)
-        return [];
-    // 1. Показываем лоудер (Замечание Дениса!)
-    container.innerHTML = `
-    <div class="loading-message" style="color: #f9b50c; text-align: center; font-size: 20px; font-family: 'Inter', sans-serif; width: 100%; margin-top: 50px;">
-      🧙‍♂️ Завантаження магії... Зачекайте, будь ласка...
-    </div>
-  `;
-    try {
-        const response = await fetch(API_URL);
+export class ApiService {
+    // Наша запертая строка с правильным адресом сервера
+    baseUrl = 'https://hp-api.onrender.com/api/characters';
+    clickSound = new Audio('assets/audio/magic-click.mp3');
+    // Метод, который обещает вернуть массив магов
+    async getAllCharacters() {
+        const response = await fetch(this.baseUrl);
         if (!response.ok) {
-            throw new Error(`Помилка сервера: ${response.status}`);
+            throw new Error(`Ошибка сети: ${response.status}`);
         }
-        const allCharacters = await response.json();
-        // Очищаем контейнер перед рендером
-        container.innerHTML = '';
-        // Фильтруем данные по переданному правилу (студенты или препы)
-        return allCharacters.filter(filterFn);
+        return await response.json();
     }
-    catch (error) {
-        // 2. Выводим ошибку для пользователя на экран (Замечание Дениса!)
-        container.innerHTML = `
-      <div class="error-message" style="color: #ff4d4d; text-align: center; font-family: 'Inter', sans-serif; width: 100%; margin-top: 50px;">
-        <p style="font-size: 22px; font-weight: bold; margin-bottom: 10px;">🔮 Ой-вей! Магічний зв'язок обірвався...</p>
-        <span style="color: #aaa;">Не вдалося завантажити персонажів. Спробуйте оновити сторінку трохи пізніше.</span>
-      </div>
-    `;
-        console.error('Помилка при отриманні даних:', error);
-        return [];
+    playClick() {
+        this.clickSound.currentTime = 0;
+        this.clickSound.play().catch(() => { });
     }
 }
