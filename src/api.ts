@@ -8,10 +8,32 @@ export class ApiService {
   );
 
   constructor() {
-    // Вешаем слушатель на весь документ, чтобы ловить абсолютно любой клик на сайте
+    // Включаем звук ТОЛЬКО при клике на реальные интерактивные элементы
     document.addEventListener('click', (e: MouseEvent): void => {
-      this.playClick();
+      const target = e.target as HTMLElement;
+
+      // Проверяем: кликнули на карточку, кнопку назад или кнопку фильтра
+      if (
+        target.closest('.student-card') ||
+        target.closest('.back-to-main-btn') ||
+        target.closest('.houses-filter__btn')
+      ) {
+        this.playClick();
+      }
     });
+  }
+
+  public playClick(): void {
+    this.clickSound.currentTime = 0;
+
+    // 🔥 Магия для мобилок: принудительно "взрываем" аудио-контекст
+    const promise = this.clickSound.play();
+
+    if (promise !== undefined) {
+      promise.catch((err: Error): void => {
+        console.log('Мобильный браузер всё ещё сопротивляется:', err.message);
+      });
+    }
   }
 
   // Метод строго возвращает промис с массивом персонажей HPCharacter
