@@ -4,8 +4,36 @@
   box-sizing: border-box;
 }
 
-body {
+// 1. Палочка для пустого места на сайте (тяжеловесный селектор)
+html body {
   background-color: var(--color-bg);
   color: var(--color-white);
   font-family: var(--font-main);
+  cursor:
+    url('../images/wand.png') 0 0,
+    auto;
+}
+
+// 2. Максимально специфичный каскад для ВСЕХ интерактивных зон
+html body {
+  a,
+  button,
+  .main-screen__btn,
+  .houses-filter__btn,
+  .back-to-main-btn,
+  .student-card,
+  .student-card__more {
+    cursor:
+      url('../images/wand.png') 0 0,
+      pointer;
+
+    // Намертво защищаем внутренности кнопок, картинки и текст
+    &,
+    *,
+    * img {
+      cursor:
+        url('../images/wand.png') 0 0,
+        pointer;
+    }
+  }
 }
