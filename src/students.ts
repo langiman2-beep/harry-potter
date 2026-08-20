@@ -1,11 +1,13 @@
 import { ApiService } from './api.js';
+import { CardRenderer } from './CardRenderer.js';
 import { HPCharacter } from './types.js';
 
 export class StudentsPage {
-  private api = new ApiService();
-  private container = document.getElementById('students-container');
+  private readonly api: ApiService = new ApiService();
+  private readonly container: HTMLElement | null =
+    document.getElementById('students-container');
 
-  async init(): Promise<void> {
+  public async init(): Promise<void> {
     if (!this.container) return;
 
     this.container.innerHTML = `
@@ -15,14 +17,19 @@ export class StudentsPage {
     `;
 
     try {
-      const allCharacters = await this.api.getAllCharacters();
-      const students = allCharacters.filter(
-        char => char.hogwartsStudent === true,
+      const allCharacters: HPCharacter[] = await this.api.getAllCharacters();
+      const students: HPCharacter[] = allCharacters.filter(
+        (char: HPCharacter) => char.hogwartsStudent === true,
       );
 
       this.container.innerHTML = '';
-      this.renderStudents(students);
-      this.setupCardClicks();
+
+      students.forEach((char: HPCharacter) => {
+        const cardHTML: string = CardRenderer.createHtml(char);
+        this.container!.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+      this.setupGlobalClicks();
     } catch (error) {
       this.container.innerHTML = `
         <div class="error-message" style="color: #ff4d4d; text-align: center; font-family: 'Inter', sans-serif; width: 100%; margin-top: 50px;">
@@ -34,64 +41,30 @@ export class StudentsPage {
     }
   }
 
-  private renderStudents(characters: HPCharacter[]): void {
-    if (!this.container) return;
-
-    characters.forEach(char => {
-      const characterImage = char.image ? char.image : 'https://placehold.co';
-      const allAltNames =
-        char.alternate_names.length > 0
-          ? char.alternate_names.join(', ')
-          : 'None';
-
-      const cardHTML = `
-        <div class="student-card">
-          <img class="student-card__img" src="${characterImage}" alt="${char.name}">
-          <div class="student-card__content">
-            <h3 class="student-card__name">${char.name}</h3>
-            <div class="student-card__info">
-              <p class="student-card__text">The Boy Who Lived</p>
-              <p class="student-card__text">${char.house || 'Unknown'}</p>
-              <p class="student-card__text">${char.dateOfBirth || 'Unknown'}</p>
-            </div>
-            <a href="#" class="student-card__more">Більше інформації <span class="student-card__arrow">→</span></a>
-          </div>
-          <div class="student-card__hover">
-            <p class="student-card__hover-line">Name: <span>${char.name}</span></p>
-            <p class="student-card__hover-line">Alternate names: <span>${allAltNames}</span></p>
-            <p class="student-card__hover-line">Species: <span>${char.species}</span></p>
-            <p class="student-card__hover-line">Gend: <span>${char.gender}</span></p>
-            <p class="student-card__hover-line">House: <span>${char.house || 'None'}</span></p>
-            <p class="student-card__hover-line">Date of birth: <span>${char.dateOfBirth || 'Unknown'}</span></p>
-            <p class="student-card__hover-line">Year of birth: <span>${char.yearOfBirth || 'Unknown'}</span></p>
-            <p class="student-card__hover-line">Wizard: <span>${char.wizard ? 'True' : 'False'}</span></p>
-            <p class="student-card__hover-line">Ancestry: <span>${char.ancestry || 'None'}</span></p>
-            <p class="student-card__hover-line">Eye colour: <span>${char.eyeColour || 'None'}</span></p>
-            <p class="student-card__hover-line">Hair colour: <span>${char.hairColour || 'None'}</span></p>
-            <p class="student-card__hover-line">Patronus: <span>${char.patronus || 'None'}</span></p>
-            <p class="student-card__hover-line">Actor: <span>${char.actor || 'Unknown'}</span></p>
-            <p class="student-card__hover-line">Alive: <span>${char.alive ? 'True' : 'False'}</span></p>
-          </div>
-        </div>
-      `;
-
-      this.container!.insertAdjacentHTML('beforeend', cardHTML);
-    });
-  }
-
-  private setupCardClicks(): void {
-    if (!this.container) return;
-
-    this.container.addEventListener('click', e => {
+  private setupGlobalClicks(): void {
+    document.addEventListener('click', (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const card = target.closest('.student-card');
-      if (!card) return;
 
-      // Переключаем класс для мобильного тапа (показать/скрыть инфу)
-      card.classList.toggle('is-flipped');
+      const backBtn = target.closest(
+        '.back-to-main-btn',
+      ) as HTMLAnchorElement | null;
+      if (backBtn) {
+        e.preventDefault();
+        this.api.playClick();
+        setTimeout(() => {
+          window.location.href = backBtn.href;
+        }, 1700);
+        return;
+      }
+
+      const card = target.closest('.student-card') as HTMLElement | null;
+      if (card) {
+        this.api.playClick();
+        card.classList.toggle('is-flipped');
+      }
     });
   }
 }
 
-const page = new StudentsPage();
+const page: StudentsPage = new StudentsPage();
 page.init();
