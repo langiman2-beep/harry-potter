@@ -1,6 +1,6 @@
 export class ApiService {
     baseUrl = 'https://hp-api.onrender.com/api/characters';
-    clickSound = new Audio('/assets/audio/magic-click.mp3');
+    clickSound = new Audio('./assets/audio/magic-click.mp3');
     constructor() {
         // Вешаем слушатель на весь документ, чтобы ловить абсолютно любой клик на сайте
         document.addEventListener('click', (e) => {
