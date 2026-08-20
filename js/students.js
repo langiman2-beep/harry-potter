@@ -1,6 +1,5 @@
 import { ApiService } from './api.js';
 export class StudentsPage {
-    // Создаем экземпляр нашего нового класса API
     api = new ApiService();
     container = document.getElementById('students-container');
     async init() {
@@ -12,12 +11,10 @@ export class StudentsPage {
       </div>
     `;
         try {
-            // Вызываем новый правильный метод из api.ts
             const allCharacters = await this.api.getAllCharacters();
             const students = allCharacters.filter(char => char.hogwartsStudent === true);
             this.container.innerHTML = '';
             this.renderStudents(students);
-            // Включаем слежку за кликами тапов по карточкам
             this.setupCardClicks();
         }
         catch (error) {
@@ -34,9 +31,7 @@ export class StudentsPage {
         if (!this.container)
             return;
         characters.forEach(char => {
-            const characterImage = char.image
-                ? char.image
-                : 'https://placehold.co/400x600/000000/000000/png';
+            const characterImage = char.image ? char.image : 'https://placehold.co';
             const allAltNames = char.alternate_names.length > 0
                 ? char.alternate_names.join(', ')
                 : 'None';
@@ -50,8 +45,7 @@ export class StudentsPage {
               <p class="student-card__text">${char.house || 'Unknown'}</p>
               <p class="student-card__text">${char.dateOfBirth || 'Unknown'}</p>
             </div>
-            <!-- Добавили специальный класс-маркер js-more-btn для отслеживания тапа -->
-            <a href="#" class="student-card__more js-more-btn">Більше інформації <span class="student-card__arrow">→</span></a>
+            <a href="#" class="student-card__more">Більше інформації <span class="student-card__arrow">→</span></a>
           </div>
           <div class="student-card__hover">
             <p class="student-card__hover-line">Name: <span>${char.name}</span></p>
@@ -74,28 +68,18 @@ export class StudentsPage {
             this.container.insertAdjacentHTML('beforeend', cardHTML);
         });
     }
-    // Метод обработки кликов и тапов для мобилок
     setupCardClicks() {
         if (!this.container)
             return;
         this.container.addEventListener('click', e => {
             const target = e.target;
-            // Ищем, кликнул ли пользователь на кнопку "Більше інформації"
-            const moreBtn = target.closest('.js-more-btn');
-            if (!moreBtn)
+            const card = target.closest('.student-card');
+            if (!card)
                 return;
-            e.preventDefault(); // Предотвращаем прыжок страницы вверх
-            // ВЫЗЫВАЕМ НАШ ОБЩИЙ ЗВУК ИЗ КЛАССА API! Никакого дублирования!
-            this.api.playClick();
-            // Находим карточку, в которой произошел клик
-            const card = moreBtn.closest('.student-card');
-            if (card) {
-                // Переключаем класс активности (тот самый второй тап для скрытия/открытия)
-                card.classList.toggle('is-flipped');
-            }
+            // Переключаем класс для мобильного тапа (показать/скрыть инфу)
+            card.classList.toggle('is-flipped');
         });
     }
 }
-// Запускаем страницу
 const page = new StudentsPage();
 page.init();

@@ -158,9 +158,8 @@
   }
 
   // Магия появления плашки на мобилках при тапе по карточке
-  &:active &__hover,
-  &:focus &__hover,
-  &:focus-within &__hover {
+
+  &.is-flipped &__hover {
     transform: translateY(0);
     opacity: 1;
   }
