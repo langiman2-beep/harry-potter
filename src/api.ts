@@ -4,7 +4,7 @@ export class ApiService {
   private readonly baseUrl: string =
     'https://hp-api.onrender.com/api/characters';
   private readonly clickSound: HTMLAudioElement = new Audio(
-    '/assets/audio/magic-click.mp3',
+    './assets/audio/magic-click.mp3',
   );
 
   constructor() {
